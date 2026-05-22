@@ -4,52 +4,35 @@
 
 <head>
 
-<title>Todo App</title>
+<title>Weather Dashboard</title>
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet"
+href="style.css">
 
 </head>
 
 <body>
 
-<h1>Todo List</h1>
+<h1>Weather Dashboard</h1>
 
-<input id="taskInput"
-placeholder="Enter task">
+<input
+id="city"
 
-<button onclick="addTask()">
+placeholder="Enter city name">
 
-Add
+<button
+onclick="getWeather()">
 
-</button>
-
-<div>
-
-<button onclick="filterTask('all')">
-
-All
+Search
 
 </button>
 
-<button onclick="filterTask('active')">
-
-Active
-
-</button>
-
-<button onclick="filterTask('completed')">
-
-Completed
-
-</button>
+<div id="weather">
 
 </div>
 
-<ul id="taskList">
-
-</ul>
-
-<script src="script.js">
+<script
+src="script.js">
 
 </script>
 

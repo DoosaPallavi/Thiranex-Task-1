@@ -1,127 +1,67 @@
-let tasks=
-JSON.parse(
-localStorage.getItem("tasks")
-)||[];
+async function getWeather(){
 
-function save(){
+let city =
+document.getElementById("city").value;
 
-localStorage.setItem(
-"tasks",
-JSON.stringify(tasks)
-);
+let apiKey =
+"9b104a9a6e67297af66e624dbc793bec";
 
-}
+let url =
+`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
-function addTask(){
+try{
 
-let input=
+let response =
+await fetch(url);
+
+let data =
+await response.json();
+
+if(data.cod!="200"){
+
 document.getElementById(
-"taskInput"
-);
+"weather"
+).innerHTML=
+"City not found";
 
-if(input.value==="")
 return;
-
-tasks.push({
-
-text:input.value,
-
-done:false
-
-});
-
-input.value="";
-
-save();
-
-show();
 
 }
 
-function show(filter="all"){
-
-let list=
 document.getElementById(
-"taskList"
-);
+"weather"
+).innerHTML=
 
-list.innerHTML="";
+`
+<h2>${data.name}</h2>
 
-tasks.forEach((task,index)=>{
+<p>
+Temperature:
+${data.main.temp}°C
+</p>
 
-if(
+<p>
+Humidity:
+${data.main.humidity}%
+</p>
 
-filter==="active"
+<p>
+Wind:
+${data.wind.speed}
+m/s
+</p>
 
-&& task.done
-
-)
-
-return;
-
-if(
-
-filter==="completed"
-
-&& !task.done
-
-)
-
-return;
-
-let li=
-document.createElement("li");
-
-li.innerHTML=
-
-task.text+
-
-`<button onclick=
-"complete(${index})">
-
-Done
-
-</button>
-
-<button onclick=
-"removeTask(${index})">
-
-Delete
-
-</button>`;
-
-list.appendChild(li);
-
-});
+`;
 
 }
 
-function complete(index){
+catch{
 
-tasks[index].done=
-
-!tasks[index].done;
-
-save();
-
-show();
+document.getElementById(
+"weather"
+).innerHTML=
+"Error loading weather";
 
 }
 
-function removeTask(index){
-
-tasks.splice(index,1);
-
-save();
-
-show();
-
 }
-
-function filterTask(type){
-
-show(type);
-
-}
-
-show();
