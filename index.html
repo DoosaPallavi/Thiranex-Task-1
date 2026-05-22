@@ -1,41 +1,57 @@
 <!DOCTYPE html>
+
 <html>
 
 <head>
-<title>My Portfolio</title>
+
+<title>Todo App</title>
+
 <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
-<header>
-<h1>Pallavi Portfolio</h1>
-</header>
+<h1>Todo List</h1>
 
-<nav>
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="projects.html">Projects</a>
-<a href="contact.html">Contact</a>
-</nav>
+<input id="taskInput"
+placeholder="Enter task">
 
-<main>
+<button onclick="addTask()">
 
-<section>
+Add
 
-<h2>Welcome</h2>
+</button>
 
-<p>Hello I am Pallavi</p>
+<div>
 
-</section>
+<button onclick="filterTask('all')">
 
-</main>
+All
 
-<footer>
+</button>
 
-<p>2026 Portfolio</p>
+<button onclick="filterTask('active')">
 
-</footer>
+Active
+
+</button>
+
+<button onclick="filterTask('completed')">
+
+Completed
+
+</button>
+
+</div>
+
+<ul id="taskList">
+
+</ul>
+
+<script src="script.js">
+
+</script>
 
 </body>
 
